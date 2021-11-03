@@ -5,10 +5,13 @@ namespace App\Entity;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+
 /**
- * @ORM\Entity(repositoryClass=ProductRepository::class)
+ //* @ORM\Entity(repositoryClass=ProductRepository::class)
+ * @ORM\Entity
  * @Vich\Uploadable
  */
 class Product
@@ -37,22 +40,21 @@ class Product
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255 , nullable=true)
      * @var string
      */
     private $image;
     /**
-     * @Vich\UploadableField(mapping="product_images", fileNameProperty="image")
+     * @Vich\UploadableField(mapping="products", fileNameProperty="image", size="imageSize")
      * @var File
      */
     private $imageFile;
 
-    // komentuje updatedAt
-    // /**
-    // * @ORM\Column(type="datetime")
-    // * @var \DateTime
-    // */
-    //private $updatedAt;
+    //  /**
+    //  * @ORM\Column(type="datetime")
+    //  * @var \DateTime
+    //  */
+    // private $updatedAt;
 
     public function getId(): ?int
     {
@@ -95,29 +97,47 @@ class Product
         return $this;
     }
     // added for images
-    public function setImageFile(File $image = null)
+    /**
+     * Undocumented function
+     *
+     * @param File|null $imageFile
+     */
+    public function setImageFile(File $imageFile = null)
     {
-        $this->imageFile = $image;
+        $this->imageFile = $imageFile;
 
         // VERY IMPORTANT:
         // It is required that at least one field changes if you are using Doctrine,
         // otherwise the event listeners won't be called and the file is lost
-        // komentuje if ($image) {
-            // if 'updatedAt' is not defined in your entity, use another property
-            //komentuje $this->updatedAt = new \DateTime('now');
-        // komentuje }
+        // if ($imageFile) {
+        //     // if 'updatedAt' is not defined in your entity, use another property
+        //     $this->updatedAt = new \DateTime('now');
+        // }
     }
-    public function getImageFile()
+    /**
+     *
+     * @return File|null 
+     */
+    public function getImageFile(): ?File
     {
-        return $this->imageFile;
+        return $this->imageFile; 
     }
-
-    public function setImage($image)
+    /**
+     * Undocumented function
+     *
+     * @param string|null $image
+     * @return this
+     */
+    public function setImage(?string $image):self
     {
         $this->image = $image;
+        return $this;
     }
-
-    public function getImage()
+    /**
+     *
+     * @return string|null
+     */
+    public function getImage(): ?string
     {
         return $this->image;
     }

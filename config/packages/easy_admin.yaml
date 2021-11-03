@@ -1,13 +1,6 @@
 # config/packages/easy_admin.yaml
 easy_admin:
   entities:
-    form:
-      fields:
-        - { property: 'imageFile', type: 'vich_image' }
-    design:
-      form_theme:
-        - '@EasyAdmin/form/bootstrap_4.html.twig'
-        - '@VichUploader/Form/fields.html.twig'
     Product:
       # ...
       list:
@@ -25,3 +18,11 @@ easy_admin:
               type: 'image',
               base_path: '%app.path.product_images%',
             }
+      form:
+        fields:
+          - { property: 'title', type: 'string' }
+          - { property: 'imageFile', type: 'vich_image' }
+    design:
+      form_theme:
+        - '@EasyAdmin/form/bootstrap_4.html.twig'
+        - '@VichUploader/Form/fields.html.twig'
