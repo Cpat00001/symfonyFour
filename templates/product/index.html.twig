@@ -37,13 +37,18 @@
 
     {# <a href="{{ path('product_new') }}">Create new</a> #}
 
-
     <div class="container">
         <div class="row">
             {% for product in products %}
-            <div class="col-sm-6" style="padding-bottom:25px;">
+            {# {{dump(product)}} #}
+            <div class="col-sm-12 col-lg-6" style="padding-bottom:25px;">
                 <div class="card" style="width: 100%;">
-                    <img src="..." class="card-img-top" alt="...">
+                    {% if product.image %}
+                        <img src="{{ asset('images/products/' ~ product.getImage())}}" class="card-img-top img-fluid" alt="{{product.name}}" style="height:400px;">
+                    {% else %}
+                        <img src="{{ asset('images/products/testImage.jpg' )}}" class="card-img-top img-fluid" alt="{{product.name}}" style="height:400px;">
+                    {% endif %}
+                    {# <img src="{{ asset('images/products/132201016198379780.jpg')}}" class="card-img-top" alt="..."> #}
                     <div class="card-body">
                         <h5 class="card-title">{{ product.name}}</h5>
                         <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-success">

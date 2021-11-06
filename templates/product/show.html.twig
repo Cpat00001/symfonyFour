@@ -27,13 +27,24 @@
     </table> #}
 
     <div class="container" style="border:1px solid grey;padding:5%;border-radius:5px">
+        {# {{ dump(product) }} #}
         <div class="row align-item-start" style="padding-bottom:10px;">
+        {# <img src="{{asset('images/products/132200233034605150.jpg')}}"> #}
+        {# <img src="{{asset('images/products/' ~ product.image) }}" class="img-fluid" style="height:100%"> #}
+        {% if product.image %}
+            <img src="{{ asset('images/products/' ~ product.getImage())}}" class="card-img-top img-fluid" alt="{{product.name}}">
+        {% else %}
+            <img src="{{ asset('images/products/testImage.jpg' )}}" class="card-img-top img-fluid" alt="{{product.name}}" style="height:400px;">
+        {% endif %}
             <div class="col-sm-10"><b>{{product.name}}</b></div>
             <div class="col-sm-2">Product Id: {{product.id}}</div>
         </div>
-        <div><b>Product description:</b><br><br> {{product.description}}</div>
+        {# <div> #}
+            <b>Product description:</b><br><br> 
+            <p>{{product.description}}</p>
+        {# </div> #}
     </div>
-    <div class="container">
+    <div class="container" style="margin-bottom:5%;">
         <div class="row align-item-end">
             <a href="{{ path('product_index') }}" class="btn btn-warning">back to list</a>
         </div>
