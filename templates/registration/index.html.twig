@@ -5,7 +5,63 @@
 
 {% block body %}
 <h5>Please fill in a form to Register</h5>
-{{dump(form)}}
-{# {{ form(form) }} #}
+{# {{dump(form)}} #}
+<div class="container registrationForm">
+    {{ form_start(form) }}
+        {# email inputField #}
+        <div class="mb-3">
+            {{ form_errors(form) }}
+        </div>
+        <div class="mb-3" id="inputField">
+         <div class="row">
+            <div class="col-sm-12">
+             <div class="input-group input-group-lg mb-3">
+                {{ form_label(form.email) }}
+            </div>
+            </div>
+            <div class="col-sm-12">
+                {{ form_widget(form.email) }}
+                 <small>{{form_help(form.email)}}</small>
+            </div>
+           
+         </div>
+        </div>
+        {# username inputField #}
+        <div class="mb-3" id="inputField">
+         <div class="row">
+            <div class="col-sm-12">
+             <div class="input-group input-group-lg mb-3">
+                {{ form_label(form.username) }}
+            </div>
+            </div>
+            <div class="col-sm-12">
+                {{ form_widget(form.username) }}
+                 <small>{{form_help(form.username)}}</small>
+            </div>
+           
+         </div>
+        </div>
+        {# password inputField #}
+        <div class="mb-3" id="inputField">
+         <div class="row">
+            <div class="col-sm-12">
+             <div class="input-group input-group-lg mb-3">
+                {{ form_label(form.password) }}
+            </div>
+            </div>
+            <div class="col-sm-12">
+                {{ form_widget(form.password) }}
+                 <small>{{form_help(form.password)}}</small>
+            </div>
+           
+         </div>
+        </div>
+        {# submit button #}
+        <div class="mb-3">
+            {{ form_row(form.save, { 'label': 'Register Me' }) }}
+        </div>
+    {{ form_end(form) }}
+</div>
+
 
 {% endblock %}

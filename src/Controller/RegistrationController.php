@@ -22,9 +22,9 @@ class RegistrationController extends AbstractController
     {
         //create a User object and initialize some data
         $user = new User();
-        $user->setEmail('test1@testowy.com');
-        $user->setRoles(['ROLE_USER']);
-        $user->setPassword('1234');
+        // $user->setEmail('test1@testowy.com');
+        // $user->setRoles(['ROLE_USER']);
+        // $user->setPassword('1234');
 
         //create a temporary form in controller
         $form = $this->createForm(UserType::class, $user);
