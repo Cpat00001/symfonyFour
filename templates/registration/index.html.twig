@@ -6,6 +6,8 @@
 {% block body %}
 <h5>Please fill in a form to Register</h5>
 {# {{dump(form)}} #}
+{{ dump(user) }}
+{{ dump(user.roles[0]) }}
 <div class="container registrationForm">
     {{ form_start(form) }}
         {# email inputField #}

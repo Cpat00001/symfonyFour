@@ -24,6 +24,9 @@ security:
       pattern: ^/(_(profiler|wdt)|css|images|js)/
       security: false
     main:
+      form_login:
+        login_path: userlogin
+        check_path: userlogin
       lazy: true
       provider: app_user_provider
       custom_authenticator: App\Security\AppAuthenticator
