@@ -25,8 +25,14 @@ security:
       security: false
     main:
       form_login:
+        # login_path: login
+        # check_path: login
+        # sprawdzam security pod katem sciezki uri "/userlogin"
+        # podobnie jak w twig renedered form oraz controller "/userlogin"
         login_path: userlogin
         check_path: userlogin
+        # set entry point for ROLE_USER
+      entry_point: form_login
       lazy: true
       provider: app_user_provider
       custom_authenticator: App\Security\AppAuthenticator
