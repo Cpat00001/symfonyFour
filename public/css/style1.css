@@ -32,3 +32,8 @@
   border-radius: 0.25rem;
   transition: color 0.15s;
 }
+
+/* logged user welcome page */
+.userNavbar {
+  background-color: #b6c7e0;
+}

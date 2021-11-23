@@ -26,4 +26,19 @@ class LoginController extends AbstractController
              'error'         => $error,
           ]);
       }
+      /**
+       * @Route("/account", name="account")
+       */
+      public function account(){
+
+         //check if user is loggedIn and authenticated
+         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+         //get user data
+         $user = $this->getUser();
+         //render template for logined
+         return $this->render('login/logined.html.twig',[
+            'user' => $user,
+         ]);
+   
+      }
 }

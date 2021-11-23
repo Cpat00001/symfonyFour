@@ -3,6 +3,9 @@ security:
   encoders:
     App\Entity\Admin:
       algorithm: auto
+    #security dla Usera
+    # App\Entity\User:
+    #   algorithm: auto
   #koniec dodanego kodu
   enable_authenticator_manager: true
   # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
@@ -16,9 +19,15 @@ security:
     # used to reload user from session & other features (e.g. switch_user)
     app_user_provider:
       entity:
-        class: App\Entity\Admin
+        class: App\Entity\User
         # property: email
         property: username
+    #dodaje app_admin_provider wraz z App\Entity\Admin
+    app_admin_provider:
+      entity:
+        class: App\Entity\Admin
+        property: username
+    #koniec add_admin_provider
   firewalls:
     dev:
       pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -27,9 +36,13 @@ security:
       form_login:
         # login_path: login
         # check_path: login
+        # when user not authenticated -> transer to name="userlogin"
+        default_target_path: userlogin
         # sprawdzam security pod katem sciezki uri "/userlogin"
         # podobnie jak w twig renedered form oraz controller "/userlogin"
         login_path: userlogin
+        enable_csrf: true
+        # check_path: userlogin
         check_path: userlogin
         # set entry point for ROLE_USER
       entry_point: form_login
