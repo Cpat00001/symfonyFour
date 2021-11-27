@@ -1,0 +1,14 @@
+{% if form is defined %}
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+    {% else %}
+    <h2>Comment this article, click below</h2>
+    <a href="{{path("comment_new")}}">Add New Comment to this artc;e</a>
+{% endif %}
+
+
+
+
+
