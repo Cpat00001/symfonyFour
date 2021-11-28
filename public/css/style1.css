@@ -37,3 +37,22 @@
 .userNavbar {
   background-color: #b6c7e0;
 }
+
+/* comment form */
+
+#comment {
+  border: 1px solid black;
+  padding: 20px;
+}
+.commentBtnForm {
+  color: #fff;
+  background-color: #198754;
+  border-color: #198754;
+  margin-top: 2px;
+  width: 100%;
+}
+.commentForm {
+  background-color: rgb(214, 218, 216);
+  padding: 30px;
+  bottom-margin: 1rem;
+}

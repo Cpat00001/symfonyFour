@@ -44,7 +44,7 @@
             <p>{{product.description}}</p>
         {# </div> #}
         {# Add Comment for for Logined User #}
-        {{ include('comment/_form.html.twig') }}
+        {{ render(controller('App\\Controller\\CommentController::new')) }}
     </div>
     <div class="container" style="margin-bottom:5%;">
         <div class="row align-item-end">
