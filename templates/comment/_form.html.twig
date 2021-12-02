@@ -1,14 +1,18 @@
-{% if form is defined %}
-    <div class="commentForm">
-    {{ form_start(form)}}
-        {{ form_widget(form) }}
-        <button class="btn commentBtnForm">{{ button_label|default('Save') }}</button>
-    {{ form_end(form) }}
-    </div>
-    {% else %}
-    <h2>Comment this article, click below</h2>
-    <a href="{{path("comment_new")}}">Add New Comment to this artc;e</a>
-{% endif %}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if form is defined %}
+        <div class="commentForm">
+        {{ form_start(form)}}
+            {{ form_widget(form) }}
+            <button class="btn commentBtnForm">{{ button_label|default('Save') }}</button>
+        {{ form_end(form) }}
+        </div>
+        {% else %}
+        <h2>Comment this article, click below</h2>
+        <a href="{{path("comment_new")}}">Add New Comment to this article</a>
+    {% endif %}
+{% endblock body %}
 
 
 

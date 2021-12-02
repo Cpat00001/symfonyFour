@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+
 use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
@@ -55,8 +57,16 @@ class ProductController extends AbstractController
      */
     public function show(Product $product): Response
     {
+        // var_dump($product->getId());
+        $prod_id = $product->getId();
+
+        //get logged User
+        $user_ident = $this->getUser()->getUserIdentifier();
+
         return $this->render('product/show.html.twig', [
             'product' => $product,
+            'prod_id' => $prod_id,
+            'user_ident' => $user_ident,
         ]);
     }
 

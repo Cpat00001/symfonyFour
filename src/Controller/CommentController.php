@@ -17,7 +17,7 @@ class CommentController extends AbstractController
 {
     /**
      * @Route("/", name="comment_index", methods={"GET"})
-     */
+     */ 
     public function index(CommentRepository $commentRepository): Response
     {
         return $this->render('comment/index.html.twig', [
@@ -26,23 +26,36 @@ class CommentController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="comment_new", methods={"GET","POST"})
+     * @Route("/new/{post_id}/{user_ident}", name="comment_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    // public function new(Request $request): Response
+    public function new(Request $request , $post_id , $user_ident): Response
     {
+        // check if user loggedIn and have ROLE_USER
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
+        var_dump($post_id);
+        var_dump($user_ident);
+
         $comment = new Comment();
+        $comment->setUser($user_ident);
+        $comment->setProductId($post_id);
+        var_dump($comment);
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
-
+    
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($comment);
             $entityManager->flush();
 
-            return $this->redirectToRoute('comment_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('product_index', [], Response::HTTP_SEE_OTHER);
+            // return $this->redirectToRoute('comment_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('comment/new.html.twig', [
+            // 'post_id' => $post_id,
+            // 'user_id' => $user_id, 
             'comment' => $comment,
             'form' => $form,
         ]);

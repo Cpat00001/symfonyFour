@@ -43,9 +43,18 @@
             <b>Product description:</b><br><br> 
             <p>{{product.description}}</p>
         {# </div> #}
+        {% if is_granted('ROLE_USER') %}
+        {{ dump(prod_id) }}
+        {{ dump(user_ident) }}
         {# Add Comment for for Logined User #}
-        {{ render(controller('App\\Controller\\CommentController::new')) }}
-    </div>
+        <a href="{{path('comment_new' , {'post_id': prod_id , 'user_ident': user_ident })}}">Comment this article</a>
+            {# {{ render(controller('App\\Controller\\CommentController::new')) }} #}
+        {% else %}
+            <p>What's your opinion??<br>Please Login to add comment to this article</p>
+            <a href="{{path('userlogin')}}">Login</a>
+
+        {% endif %}
+    </div> 
     <div class="container" style="margin-bottom:5%;">
         <div class="row align-item-end">
             <a href="{{ path('product_index') }}" class="btn btn-warning">back to list</a>
