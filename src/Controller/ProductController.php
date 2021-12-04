@@ -60,8 +60,15 @@ class ProductController extends AbstractController
         // var_dump($product->getId());
         $prod_id = $product->getId();
 
-        //get logged User
+        //get logged User if logged In or set "exampleuser" if not loggedIn
+        $user_ident = $this->getUser();
+
+        if(is_null($user_ident)){
+            $user_ident = "exampleuser@example.com";
+        }else{
         $user_ident = $this->getUser()->getUserIdentifier();
+        }
+        // var_dump($user_ident);
 
         return $this->render('product/show.html.twig', [
             'product' => $product,

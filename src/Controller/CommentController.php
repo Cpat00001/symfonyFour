@@ -17,11 +17,25 @@ class CommentController extends AbstractController
 {
     /**
      * @Route("/", name="comment_index", methods={"GET"})
+     * @ParamConverter("product", class="SensioBlogBundle:Product")
      */ 
     public function index(CommentRepository $commentRepository): Response
     {
+        //check if the user is loggedIn and what is his identifier
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $user = $this->getUser();
+        $user_email = $user->getEmail();
+        // var_dump($product);
+        echo "<br><br>";
+        // var_dump($user_email);
+        $matching_comments = $commentRepository->findBy(['product_id' => $user_email]);
+        var_dump($commentRepository->findAll());
+        echo "SELECETED <br><br>";
+        var_dump($matching_comments);
+
         return $this->render('comment/index.html.twig', [
             'comments' => $commentRepository->findAll(),
+            'user_email' => $user_email,
         ]);
     }
 

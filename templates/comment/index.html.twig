@@ -9,9 +9,9 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>User</th>
-                <th>Description</th>
-                <th>actions</th>
+                <th>Author</th>
+                <th>Comment</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -20,10 +20,22 @@
                 <td>{{ comment.id }}</td>
                 <td>{{ comment.user }}</td>
                 <td>{{ comment.description }}</td>
+                {# check if logged user, his email and if is an author edit/delete buttons
+                 to his coments  #}
+                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <td>
-                    <a href="{{ path('comment_show', {'id': comment.id}) }}">show</a>
-                    <a href="{{ path('comment_edit', {'id': comment.id}) }}">edit</a>
+                    {# {{dump(user_email)}} #}
+                    {# check if logged user is comment author,if he is then allow to edit/delete #}
+                    {% if comment.user == user_email %}
+                        <a href="{{ path('comment_edit', {'id': comment.id}) }}">
+                            <button type="button" class="btn btn-primary">Edit</button>
+                        </a>
+                        <a href="{{ path('comment_delete', {'id': comment.id}) }}">
+                            <button type="button" class="btn btn-danger">Danger</button>
+                        </a>
+                    {% endif %}
                 </td>
+                {% endif %}
             </tr>
         {% else %}
             <tr>
@@ -33,5 +45,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('comment_new') }}">Create new</a>
+    {# <a href="{{ path('comment_new') }}">Create new</a> #}
 {% endblock %}
