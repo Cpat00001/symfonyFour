@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+// use App\Entity\User;    
+// use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+
 use App\Entity\Comment;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
@@ -17,7 +20,6 @@ class CommentController extends AbstractController
 {
     /**
      * @Route("/", name="comment_index", methods={"GET"})
-     * @ParamConverter("product", class="SensioBlogBundle:Product")
      */ 
     public function index(CommentRepository $commentRepository): Response
     {
@@ -25,17 +27,11 @@ class CommentController extends AbstractController
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
         $user_email = $user->getEmail();
-        // var_dump($product);
-        echo "<br><br>";
-        // var_dump($user_email);
-        $matching_comments = $commentRepository->findBy(['product_id' => $user_email]);
-        var_dump($commentRepository->findAll());
-        echo "SELECETED <br><br>";
-        var_dump($matching_comments);
-
+        
         return $this->render('comment/index.html.twig', [
             'comments' => $commentRepository->findAll(),
             'user_email' => $user_email,
+            // 'comment_prod_id' => $comment_prod_id
         ]);
     }
 
@@ -67,9 +63,7 @@ class CommentController extends AbstractController
             // return $this->redirectToRoute('comment_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('comment/new.html.twig', [
-            // 'post_id' => $post_id,
-            // 'user_id' => $user_id, 
+        return $this->renderForm('comment/new.html.twig', [ 
             'comment' => $comment,
             'form' => $form,
         ]);

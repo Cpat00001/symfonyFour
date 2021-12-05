@@ -1,21 +1,20 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Comment index{% endblock %}
-
+{# {% extends 'base.html.twig' %} #}
 {% block body %}
-    <h1>Comment index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Author</th>
-                <th>Comment</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for comment in comments %}
+    {{ dump("SELECTED COMMENTS") }}
+    {{ dump(selected_comments) }}
+{% if selected_comments %}
+        <h5>Comments on this article:</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Author</th>
+                    <th>Comment</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+    {% for comment in selected_comments %} 
             <tr>
                 <td>{{ comment.id }}</td>
                 <td>{{ comment.user }}</td>
@@ -31,19 +30,24 @@
                             <button type="button" class="btn btn-primary">Edit</button>
                         </a>
                         <a href="{{ path('comment_delete', {'id': comment.id}) }}">
-                            <button type="button" class="btn btn-danger">Danger</button>
+                            <button type="button" class="btn btn-danger">Delete</button>
                         </a>
+                        {# {{ dump(comment) }}
+                        {{ dump(prod_id) }} #}
                     {% endif %}
                 </td>
                 {% endif %}
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">no record found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    {% else %}
+        <h5>no comments yet, be first to add one</h5>
+    {% endif %}
 
     {# <a href="{{ path('comment_new') }}">Create new</a> #}
 {% endblock %}

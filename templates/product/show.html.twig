@@ -44,8 +44,8 @@
             <p>{{product.description}}</p>
         {# </div> #}
         {% if is_granted('ROLE_USER') %}
-        {{ dump(prod_id) }}
-        {{ dump(user_ident) }}
+        {# {{ dump(prod_id) }}
+        {{ dump(user_ident) }} #}
         {# Add Comment for for Logined User #}
         <a href="{{path('comment_new' , {'post_id': prod_id , 'user_ident': user_ident })}}">Comment this article</a>
             {# {{ render(controller('App\\Controller\\CommentController::new')) }} #}
@@ -55,8 +55,8 @@
         {% endif %}
 
         {# Embede comment assigned to this Product/Post #}
-        <h5>Comments on this article:</h5>
-        
+        {# {{ render(controller('App\\Controller\\CommentController::index' , {'prod_id': prod_id})) }} #}
+        {{include ('comment/index.html.twig') }}
     </div> 
     <div class="container" style="margin-bottom:5%;">
         <div class="row align-item-end">
