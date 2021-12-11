@@ -18,7 +18,7 @@
             <tr>
                 <td>{{ comment.id }}</td>
                 <td>{{ comment.user }}</td>
-                <td>{{ comment.description }}</td>
+                <td class="comment_description">{{ comment.description }}</td>
                 {# check if logged user, his email and if is an author edit/delete buttons
                  to his coments  #}
                  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
@@ -27,10 +27,10 @@
                     {# check if logged user is comment author,if he is then allow to edit/delete #}
                     {% if comment.user == user_email %}
                         <a href="{{ path('comment_edit', {'id': comment.id}) }}">
-                            <button type="button" class="btn btn-primary">Edit</button>
+                            <button type="button" class="btn btn-primary edit_comment_btn">Edit</button>
                         </a>
                         <a href="{{ path('comment_delete', {'id': comment.id}) }}">
-                            <button type="button" class="btn btn-danger">Delete</button>
+                            <button type="button" class="btn btn-danger delete_comment_btn">Delete</button>
                         </a>
                         {# {{ dump(comment) }}
                         {{ dump(prod_id) }} #}

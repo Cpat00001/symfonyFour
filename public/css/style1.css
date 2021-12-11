@@ -59,3 +59,21 @@
 .comment_body {
   margin-top: 1%;
 }
+.comment_description {
+  width: 50%;
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+  .comment_description {
+    width: 50%;
+    background-color: pink;
+  }
+  .edit_comment_btn {
+    margin-bottom: 2px;
+    width: 100%;
+  }
+  .delete_comment_btn {
+    width: 100%;
+  }
+}
