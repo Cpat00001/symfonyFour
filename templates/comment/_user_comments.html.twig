@@ -1,0 +1,35 @@
+{% block body %}
+
+    {% if comments %}
+        <div class="container" style="margin-top:2%;">
+            <div class="row">
+                <div class="col-sm-12 col-lg-6" style="background-color:rgb(217, 216, 212);padding:10px;">
+                    <p>Your comments:</p>
+                </div>
+                <div class="col-sm-12 col-lg-6"></div>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Comment ID</th>
+                    <th scope="col">Description</th>
+                    {# <th scope="col">Post</th> #}
+                </tr>
+            </thead>
+            <tbody>
+            {% for comment in comments %}
+            {# {{ dump(comment) }} #}
+                <tr>
+                    <td><p>{{ comment.id }}</p></td>
+                    <td><p>{{comment.description }}</p></td>
+                </tr>          
+            </tbody>
+
+            {% endfor %}
+
+            </table>
+
+    {% endif %}
+
+{% endblock %}

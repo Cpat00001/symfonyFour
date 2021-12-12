@@ -32,6 +32,9 @@
                  <p>your registered email is: <span class="fs-5 fw-bolder"> {{ user.email}}</span></p>
             </div>
         </div>
+        {{ render(controller(
+        'App\\Controller\\CommentController::userComments', {max: 5}
+    )) }}
     </div>
      
 {% endif %}    

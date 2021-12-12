@@ -2,6 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
+use Symfony\Component\HttpFoundation\Request;
+
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,8 +33,8 @@ class LoginController extends AbstractController
       /**
        * @Route("/account", name="account")
        */
-      public function account(){
-
+      public function account(): Response
+      {  
          //check if user is loggedIn and authenticated
          $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
          //get user data

@@ -2,8 +2,7 @@
 
 namespace App\Controller;
 
-// use App\Entity\User;    
-// use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use App\Entity\User;    
 
 use App\Entity\Comment;
 use App\Form\CommentType;
@@ -27,11 +26,29 @@ class CommentController extends AbstractController
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
         $user_email = $user->getEmail();
-        
+        $comments = $commentRepository->findAll();
+ 
         return $this->render('comment/index.html.twig', [
-            'comments' => $commentRepository->findAll(),
+            // 'comments' => $commentRepository->findAll(),
+            'comments' => $comments,
             'user_email' => $user_email,
             // 'comment_prod_id' => $comment_prod_id
+        ]);
+    }
+
+    /**
+     * @Route("/usercomments", name="recent_comments", methods={"GET"})
+     */ 
+    public function userComments(CommentRepository $commentRepository){
+
+        $user = $this->getUser();
+        $user_email = $user->getEmail();
+        // var_dump($user_email);
+        $comments = $commentRepository->findBy(
+            ['user' => $user_email ]
+        );
+        return $this->render('comment/_user_comments.html.twig' , [
+            'comments' => $comments,
         ]);
     }
 
