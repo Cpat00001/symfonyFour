@@ -63,18 +63,18 @@ class ProductController extends AbstractController
     {
         // var_dump($product->getId());
         $prod_id = $product->getId();
-        echo "<br> Prod_ID";
-        var_dump($prod_id);
-        echo "<br>";
+        // echo "<br> Prod_ID";
+        // var_dump($prod_id);
+        // echo "<br>";
         $comments = $commentRepository->findAll();
-        var_dump($comments);
-        echo "<br><br>";
+        // var_dump($comments);
+        // echo "<br><br>";
         //select all comments matching to current product_id/post_id and pass to template
         // simply show comments related to product/post -> NOT ALL Comments
         $selected_comments = $commentRepository->findBy(['product_id' => $prod_id ]);
-        echo "SELECTED COMMENTS<br>";
-        var_dump($selected_comments);
-        echo "<br>";
+        // echo "SELECTED COMMENTS<br>";
+        // var_dump($selected_comments);
+        // echo "<br>";
         foreach($comments as $comment){
             $comment_product_id = $comment->getProductId();
             // var_dump($comment_product_id);

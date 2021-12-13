@@ -37,6 +37,12 @@
 .userNavbar {
   background-color: #b6c7e0;
 }
+/* product */
+.product_details {
+  padding: 5px;
+  background-color: rgb(219, 190, 190);
+  /* box-shadow: 2px 2px 5px 5px rgba(228, 225, 225, 0.5); */
+}
 
 /* comment form */
 

@@ -14,15 +14,17 @@
                 <tr>
                     <th scope="col">Comment ID</th>
                     <th scope="col">Description</th>
-                    {# <th scope="col">Post</th> #}
+                    <th scope="col">Post</th>
                 </tr>
             </thead>
             <tbody>
             {% for comment in comments %}
-            {# {{ dump(comment) }} #}
+            {# {{ dump(comment.getProductId()) }} #}
+            {% set post_id = comment.getProductId() %}
                 <tr>
                     <td><p>{{ comment.id }}</p></td>
                     <td><p>{{comment.description }}</p></td>
+                    <td><a href="{{path('product_show',{id: post_id })}}">Visit Post</a></td>
                 </tr>          
             </tbody>
 

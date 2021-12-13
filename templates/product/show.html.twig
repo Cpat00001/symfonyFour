@@ -36,8 +36,11 @@
         {% else %}
             <img src="{{ asset('images/products/testImage.jpg' )}}" class="card-img-top img-fluid" alt="{{product.name}}" style="height:400px;">
         {% endif %}
-            <div class="col-sm-10"><b>{{product.name}}</b></div>
-            <div class="col-sm-2">Product Id: {{product.id}}</div>
+            <div class="row product_details">
+                <div class="col-sm-6"><b>{{product.name}}</b></div>
+                <div class="col-sm-3">Product Id: {{product.id}}</div>
+                <div class="col-sm-3"><h5>Product Price: {{product.price}}</h5></div>
+            </div>
         </div>
         {# <div> #}
             <b>Product description:</b><br><br> 
